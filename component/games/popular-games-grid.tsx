@@ -1,7 +1,7 @@
 import Link from "next/link";
-import GameCard from "@/component/game-card";
+import GameCard, { GameData } from "@/component/game-card";
 
-const POPULAR_GAMES = [
+const POPULAR_GAMES: GameData[] = [
   {
     id: 1,
     title: "Spider-Man 3",
@@ -63,7 +63,11 @@ export default function PopularGamesGrid() {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {POPULAR_GAMES.map((game) => (
-          <Link key={game.id} href={`/games/${game.title.toLowerCase().replace(/ /g, '-')}`} className={`flex flex-col gap-2 group cursor-pointer ${game.id > 3 ? 'hidden md:flex' : ''} ${game.id > 4 ? 'lg:flex' : ''}`}>
+          <Link 
+            key={game.id} 
+            href={game.isPlaceholder ? "#" : `/games/${game.title?.toLowerCase().replace(/ /g, '-') || ''}`} 
+            className={`flex flex-col gap-2 group cursor-pointer ${Number(game.id) > 3 ? 'hidden md:flex' : ''} ${Number(game.id) > 4 ? 'lg:flex' : ''}`}
+          >
             <div className={`relative w-full aspect-[2/3] border border-surface-variant rounded overflow-hidden group-hover:border-primary transition-colors ${game.isPlaceholder ? 'bg-surface-container-high' : ''}`}>
               {game.img ? (
                 <img alt={game.title} className="w-full h-full object-cover" src={game.img} />
