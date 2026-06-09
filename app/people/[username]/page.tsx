@@ -43,7 +43,7 @@ const PROFILE_LISTS = [
   },
   {
     id: 2,
-    title: "PS2 Classics I Grew Up With",
+    title: "The PS2 Golden Era",
     gamesCount: 18,
     likes: "112",
     comments: "23",
@@ -467,12 +467,11 @@ export default function UserProfilePage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {PROFILE_LISTS.map((list) => (
-                <Link
+                <div
                   key={list.id}
-                  href={`/lists/${list.id}`}
-                  className="group cursor-pointer flex flex-col"
+                  className="group flex flex-col"
                 >
-                  <div className="flex h-32 mb-3 rounded-lg overflow-hidden border border-surface-variant group-hover:border-primary transition-colors shadow-sm">
+                  <div className="relative flex h-32 mb-3 rounded-lg overflow-hidden border border-surface-variant group-hover:border-primary transition-colors shadow-sm">
                     {list.images.map((img, i) => (
                       <img
                         key={i}
@@ -481,10 +480,26 @@ export default function UserProfilePage() {
                         src={img}
                       />
                     ))}
+                    
+                    {/* Hover Overlay with Edit Button */}
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center z-20">
+                      <Link 
+                        href="/lists/edit" 
+                        className="bg-primary text-on-primary font-bold font-label-md px-4 py-2 rounded flex items-center gap-1 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                      >
+                        <span className="material-symbols-outlined text-sm">edit</span> EDIT LIST
+                      </Link>
+                    </div>
+
+                    {/* View List Background Link */}
+                    <Link href={`/lists/${list.id}`} className="absolute inset-0 z-10" />
                   </div>
-                  <h3 className="font-headline text-[18px] leading-tight text-on-surface group-hover:text-primary transition-colors font-bold mb-1">
-                    {list.title}
-                  </h3>
+
+                  <Link href={`/lists/${list.id}`}>
+                    <h3 className="font-headline text-[18px] leading-tight text-on-surface group-hover:text-primary transition-colors font-bold mb-1">
+                      {list.title}
+                    </h3>
+                  </Link>
                   <div className="flex items-center gap-3 text-on-surface-variant font-label-sm text-[11px]">
                     <span className="font-bold">{list.gamesCount} games</span>
                     <span className="opacity-60">•</span>
@@ -507,7 +522,7 @@ export default function UserProfilePage() {
                       {list.comments}
                     </span>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
