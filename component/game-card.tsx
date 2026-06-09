@@ -30,10 +30,11 @@ export default function GameCard({ game, className = "" }: GameCardProps) {
             <span className="font-display text-headline-sm text-on-surface-variant text-center px-2">{game.title}</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
-          <div className="bg-primary text-on-primary font-label-md px-3 py-1.5 rounded flex items-center gap-1">
+        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center z-10 p-4 gap-3">
+          <div className="bg-primary text-on-primary font-label-md px-3 py-1.5 rounded flex items-center gap-1 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
             <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>visibility</span> VIEW
           </div>
+          <span className="text-white font-display text-headline-sm text-center leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">{game.title}</span>
         </div>
       </div>
       <div className="flex flex-col gap-1 px-1 mt-1 overflow-hidden">

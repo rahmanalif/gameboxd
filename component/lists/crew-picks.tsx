@@ -8,10 +8,10 @@ const CREW_PICKS = [
     isOfficial: true,
     gamesCount: "100 games",
     images: [
-      "/games/need for speed most wanted.jpg",
-      "/games/grandtheftautovicecity_pc.jpg",
-      "/games/124909-spider-man-3-windows-front-cover.png",
-      "/games/prince of persia.jpg"
+      "/games/download (8).jpg",
+      "/games/download (9).jpg",
+      "/games/download (10).jpg",
+      "/games/download.jpg"
     ]
   }
 ];

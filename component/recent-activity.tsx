@@ -7,7 +7,7 @@ const REVIEWS = [
     likes: 24,
     comments: 5,
     avatar: "/users/pewdiepie.jpg",
-    thumb: "/users/pewdiepie.jpg",
+    thumb: "/games/Box1.jpg",
     content: "An absolute masterpiece of choice and consequence. The depth of the systems and the writing is unparalleled in modern RPGs. I've restarted three times just to see different outcomes."
   },
   {
@@ -18,7 +18,7 @@ const REVIEWS = [
     likes: 12,
     comments: 0,
     avatar: "/users/pewdiepie.jpg",
-    thumb: "/users/pewdiepie.jpg",
+    thumb: "/games/house of the dead.jpg",
     content: "Visually stunning and genuinely unsettling. The meta-narrative elements elevate it beyond a standard horror game, though combat can feel a bit clunky at times."
   }
 ];
@@ -52,25 +52,19 @@ export default function RecentActivity() {
                     <span className="text-on-surface-variant font-body text-sm">reviewed</span>
                     <span className="font-label-md text-label-md text-on-surface font-bold">{review.game}</span>
                   </div>
-                  <div className="flex text-primary gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="material-symbols-outlined text-lg" style={{ fontVariationSettings: i < review.rating ? "'FILL' 1" : "'FILL' 0" }}>star</span>
-                    ))}
+                  <div className="flex items-center gap-4">
+                    <div className="flex text-primary gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="material-symbols-outlined text-lg" style={{ fontVariationSettings: i < review.rating ? "'FILL' 1" : "'FILL' 0" }}>star</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+                      <span className="material-symbols-outlined text-base">favorite</span>
+                      <span className="font-label-sm text-label-sm">{review.likes}</span>
+                    </div>
                   </div>
                 </div>
                 <p className="font-body text-body-md text-on-surface-variant line-clamp-2 leading-relaxed italic">"{review.content}"</p>
-                <div className="flex items-center gap-5 mt-1">
-                  <button className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
-                    <span className="material-symbols-outlined text-lg">favorite</span>
-                    <span className="font-label-sm text-label-sm">{review.likes}</span>
-                  </button>
-                  {review.comments > 0 && (
-                    <button className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
-                      <span className="material-symbols-outlined text-lg">chat_bubble</span>
-                      <span className="font-label-sm text-label-sm">{review.comments}</span>
-                    </button>
-                  )}
-                </div>
               </div>
             </div>
             {index < REVIEWS.length - 1 && <div className="h-px bg-surface-variant w-full opacity-50 my-2"></div>}

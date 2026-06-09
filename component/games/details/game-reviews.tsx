@@ -44,10 +44,16 @@ export default function GameReviews() {
                 </div>
                 <div>
                   <div className="font-label-md text-label-md text-on-surface font-bold">{review.user}</div>
-                  <div className="flex items-center text-primary-container gap-0.5 mt-1">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: i < review.rating ? "'FILL' 1" : "'FILL' 0", fontSize: '14px' }}>star</span>
-                    ))}
+                  <div className="flex items-center gap-4 mt-1">
+                    <div className="flex items-center text-primary-container gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: i < review.rating ? "'FILL' 1" : "'FILL' 0", fontSize: '14px' }}>star</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+                      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>favorite</span>
+                      {review.likes}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -56,14 +62,6 @@ export default function GameReviews() {
             <p className="font-body text-body-md text-on-surface-variant line-clamp-4 leading-relaxed italic">
               "{review.content}"
             </p>
-            <div className="flex items-center gap-5 mt-2 text-on-surface-variant font-label-sm text-label-sm">
-              <span className="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer group-hover:text-on-surface">
-                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>favorite</span> {review.likes} Likes
-              </span>
-              <span className="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer group-hover:text-on-surface">
-                <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>chat_bubble</span> {review.comments} Comments
-              </span>
-            </div>
           </div>
         ))}
       </div>

@@ -10,10 +10,10 @@ const FEATURED_LISTS = [
     likes: "387K",
     comments: "33K",
     images: [
-      "/games/124909-spider-man-3-windows-front-cover.png",
-      "/games/grandtheftautovicecity_pc.jpg",
-      "/games/igic.jpg",
-      "/games/need for speed most wanted.jpg"
+      "/games/ah, memories.jpg",
+      "/games/Call of Duty Ghosts.jpg",
+      "/games/Devil May Cry 2.jpg",
+      "/games/Hitman - Contracts.jpg"
     ]
   },
   {
@@ -23,10 +23,10 @@ const FEATURED_LISTS = [
     isOfficial: true,
     gamesCount: "250 games",
     images: [
-      "/games/124909-spider-man-3-windows-front-cover.png",
-      "/games/grandtheftautovicecity_pc.jpg",
-      "/games/igic.jpg",
-      "/games/need for speed most wanted.jpg"
+      "/games/need for speed carbon ps2.jpg",
+      "/games/RE4 PS2 cover_ Resident Evil 4 ps2 cover.jpg",
+      "/games/Super Mario Bros NES 18 X 24_ Video Game Poster, 1,2,3, and 4 Bundle - Etsy.jpg",
+      "/games/wp11667647-minecraft-poster-wallpapers.jpg"
     ]
   },
   {
@@ -36,10 +36,10 @@ const FEATURED_LISTS = [
     avatar: "/users/pewdiepie.jpg",
     gamesCount: "135 games",
     images: [
-      "/games/124909-spider-man-3-windows-front-cover.png",
-      "/games/grandtheftautovicecity_pc.jpg",
-      "/games/igic.jpg",
-      "/games/need for speed most wanted.jpg"
+      "/games/Devil May Cry 3_ Special Edition PS2 NTSC-J.jpg",
+      "/games/download (1).jpg",
+      "/games/download (2).jpg",
+      "/games/download (3).jpg"
     ]
   },
   {
@@ -49,10 +49,10 @@ const FEATURED_LISTS = [
     isOfficial: true,
     gamesCount: "100 games",
     images: [
-      "/games/124909-spider-man-3-windows-front-cover.png",
-      "/games/grandtheftautovicecity_pc.jpg",
-      "/games/igic.jpg",
-      "/games/need for speed most wanted.jpg"
+      "/games/download (4).jpg",
+      "/games/download (5).jpg",
+      "/games/download (6).jpg",
+      "/games/download (7).jpg"
     ]
   }
 ];
@@ -62,7 +62,7 @@ export default function FeaturedLists() {
     <section>
       <div className="flex items-center justify-between mb-4 border-b border-surface-variant pb-2">
         <h2 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest font-bold">Featured Lists</h2>
-        <Link href="#" className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-bold tracking-widest uppercase">
+        <Link href="/lists" className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-bold tracking-widest uppercase">
           ALL • OFFICIAL
         </Link>
       </div>

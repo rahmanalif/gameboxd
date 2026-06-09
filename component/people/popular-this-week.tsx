@@ -62,7 +62,7 @@ export default function PopularThisWeek() {
     <div className="lg:col-span-3">
       <h2 className="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase border-b border-outline-variant mb-4 pb-2 flex justify-between font-bold">
         <span>Popular This Week</span>
-        <Link className="text-primary hover:underline text-xs" href="#">MORE</Link>
+        <Link className="text-primary hover:underline text-xs" href="/people">MORE</Link>
       </h2>
       <div className="flex flex-col">
         {POPULAR_MEMBERS.map((member) => (

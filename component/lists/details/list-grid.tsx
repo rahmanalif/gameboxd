@@ -7,10 +7,10 @@ const GAMES = [
   { id: 4, title: "Need for Speed Most Wanted", img: "/games/need for speed most wanted.jpg", number: 4 },
   { id: 5, title: "Prince of Persia", img: "/games/prince of persia.jpg", number: 5 },
   { id: 6, title: "House of the Dead", img: "/games/house of the dead.jpg", number: 6 },
-  { id: 7, title: "WWE Smackdown", img: "/games/61N9DX5CRKL._SY445_.jpg", number: 7 },
-  { id: 8, title: "Project IGI 2", img: "/games/Box1.jpg", number: 8 },
-  { id: 9, isPlaceholder: true },
-  { id: 10, isPlaceholder: true }
+  { id: 7, title: "Devil May Cry 2", img: "/games/Devil May Cry 2.jpg", number: 7 },
+  { id: 8, title: "Hitman - Contracts", img: "/games/Hitman - Contracts.jpg", number: 8 },
+  { id: 9, title: "Resident Evil 4", img: "/games/RE4 PS2 cover_ Resident Evil 4 ps2 cover.jpg", number: 9 },
+  { id: 10, title: "Minecraft", img: "/games/wp11667647-minecraft-poster-wallpapers.jpg", number: 10 }
 ];
 
 export default function ListGrid() {

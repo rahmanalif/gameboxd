@@ -10,10 +10,10 @@ const LIKED_LISTS = [
     likes: "2",
     description: "",
     images: [
-      "/games/prince of persia.jpg",
-      "/games/house of the dead.jpg",
-      "/games/61N9DX5CRKL._SY445_.jpg",
-      "/games/Box1.jpg"
+      "/games/ah, memories.jpg",
+      "/games/Hitman - Contracts.jpg",
+      "/games/RE4 PS2 cover_ Resident Evil 4 ps2 cover.jpg",
+      "/games/Devil May Cry 2.jpg"
     ]
   },
   {
@@ -25,10 +25,10 @@ const LIKED_LISTS = [
     likes: "7",
     description: "A compilation of favourite games curated by Discord server JDNO: The Factory. Join us with code jQSP7BRyNk...",
     images: [
-      "/games/prince of persia.jpg",
-      "/games/house of the dead.jpg",
-      "/games/61N9DX5CRKL._SY445_.jpg",
-      "/games/Box1.jpg"
+      "/games/Super Mario Bros NES 18 X 24_ Video Game Poster, 1,2,3, and 4 Bundle - Etsy.jpg",
+      "/games/wp11667647-minecraft-poster-wallpapers.jpg",
+      "/games/Devil May Cry 3_ Special Edition PS2 NTSC-J.jpg",
+      "/games/Call of Duty Ghosts.jpg"
     ]
   },
   {
@@ -40,10 +40,10 @@ const LIKED_LISTS = [
     likes: "58",
     description: "All games listed on grindhousecinema.com (former domain: erotiga.net or Eroti.ga, or SleazeMovies). Not on Gameboxd: 42nd Street Forever, Volume 5:...",
     images: [
-      "/games/prince of persia.jpg",
-      "/games/house of the dead.jpg",
-      "/games/61N9DX5CRKL._SY445_.jpg",
-      "/games/Box1.jpg"
+      "/games/download (1).jpg",
+      "/games/download (2).jpg",
+      "/games/download (3).jpg",
+      "/games/download (4).jpg"
     ]
   }
 ];
