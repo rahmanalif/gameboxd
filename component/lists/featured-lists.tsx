@@ -2,7 +2,20 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const TRENDING_LISTS = [
+interface ListData {
+  id: number;
+  title: string;
+  author: string;
+  isOfficial?: boolean;
+  avatar?: string;
+  avatarText?: string;
+  gamesCount: string;
+  likes: string;
+  comments: string;
+  images: string[];
+}
+
+const TRENDING_LISTS: ListData[] = [
   {
     id: 1,
     title: "Gameboxd's Top 500 Games",
@@ -88,7 +101,7 @@ const TOP_RATED_LISTS = [
   }
 ];
 
-const FRIENDS_LISTS = [
+const FRIENDS_LISTS: ListData[] = [
   {
     id: 201,
     title: "My PS2 Childhood",

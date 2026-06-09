@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const GAMES = [
+const GAMES: { id: number; title: string; img?: string; number?: number; isPlaceholder?: boolean }[] = [
   { id: 1, title: "Spider-Man 3", img: "/games/124909-spider-man-3-windows-front-cover.png", number: 1 },
   { id: 2, title: "GTA Vice City", img: "/games/grandtheftautovicecity_pc.jpg", number: 2 },
   { id: 3, title: "IGI", img: "/games/igic.jpg", number: 3 },
