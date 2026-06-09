@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Navbar from "@/component/navbar";
 import Footer from "@/component/footer";
+import Link from "next/link";
 import FeaturedLists from "@/component/lists/featured-lists";
 import RecentlyLiked from "@/component/lists/recently-liked";
 import CrewPicks from "@/component/lists/crew-picks";
@@ -33,9 +34,9 @@ export default function ListsPage() {
               </button>
             ))}
             <div className="w-px h-4 bg-outline-variant mx-2"></div>
-            <button className="flex items-center gap-1 font-label-md text-label-md bg-primary text-[#00210b] px-4 py-2 rounded-full hover:bg-primary-container transition-colors whitespace-nowrap shadow-md active:scale-95 font-bold tracking-widest">
+            <Link href="/lists/new" className="flex items-center gap-1 font-label-md text-label-md bg-primary text-[#00210b] px-4 py-2 rounded-full hover:bg-primary-container transition-colors whitespace-nowrap shadow-md active:scale-95 font-bold tracking-widest">
               <span className="material-symbols-outlined text-[16px] font-bold">add</span> CREATE LIST
-            </button>
+            </Link>
           </div>
         </div>
         
