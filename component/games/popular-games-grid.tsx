@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { GameData } from "@/component/game-card";
 
-const POPULAR_GAMES: GameData[] = [
+export const POPULAR_GAMES: GameData[] = [
   { id: 1, title: "Spider-Man 3", rating: 4.2, views: "1.5m", likes: "124k", img: "/games/124909-spider-man-3-windows-front-cover.png" },
   { id: 2, title: "Devil May Cry 3", rating: 4.8, views: "8.5m", likes: "890k", img: "/games/Devil May Cry 3_ Special Edition PS2 NTSC-J.jpg" },
   { id: 3, title: "Hitman Contracts", rating: 4.3, views: "2.1m", likes: "156k", img: "/games/Hitman - Contracts.jpg" },

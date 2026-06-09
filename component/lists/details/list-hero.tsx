@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export default function ListHero() {
+interface ListHeroProps {
+  listTitle?: string;
+}
+
+export default function ListHero({ listTitle }: ListHeroProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter md:gap-8 lg:gap-12 relative">
       {/* Right Column: Details (Now spans more or full if preferred, keeping grid for consistency) */}
@@ -24,7 +28,7 @@ export default function ListHero() {
         {/* Title */}
         <div className="flex flex-col gap-2">
           <h1 className="font-display text-display-lg md:text-[56px] text-on-surface tracking-tighter leading-tight font-bold">
-            Games everyone should play at least once
+            {listTitle ?? "Games everyone should play at least once"}
           </h1>
         </div>
 
