@@ -27,6 +27,13 @@ const games = [
   { title: "Hitman Contracts", img: "/games/Hitman - Contracts.jpg", rating: 4, views: "600", likes: "150" },
 ];
 
+const FOLLOWING_USERS = [
+  { id: 1, name: "Elena Fisher", avatar: "/users/pewdiepie.jpg", reviews: "1.7k reviews", views: "5,241", lists: "34", likes: "1,892" },
+  { id: 2, name: "cob", avatar: "/users/pewdiepie.jpg", reviews: "2,740 reviews", views: "2,897", lists: "161", likes: "2,145" },
+  { id: 3, name: "zoë rose bryant", avatar: "/users/pewdiepie.jpg", reviews: "2,430 reviews", views: "5,065", lists: "56", likes: "2,710" },
+  { id: 4, name: "NeoPixel", avatar: "/users/pewdiepie.jpg", reviews: "169 reviews", views: "890", lists: "12", likes: "340" },
+];
+
 const PROFILE_LISTS = [
   {
     id: 1,
@@ -74,6 +81,17 @@ export default function UserProfilePage() {
   const searchParams = useSearchParams();
   const username = (params.username as string) || "PEWDIEPIE";
   const [activeTab, setActiveTab] = useState(searchParams.get("tab") || "Profile");
+  const [followingSet, setFollowingSet] = useState<Set<number>>(
+    new Set(FOLLOWING_USERS.map((u) => u.id))
+  );
+  const toggleFollow = (id: number) => {
+    setFollowingSet((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -527,6 +545,91 @@ export default function UserProfilePage() {
             </div>
           </div>
         );
+
+      case "Following": {
+        return (
+          <div className="max-w-3xl flex flex-col gap-0">
+            <div className="flex justify-between items-center border-b border-surface-variant pb-2 mb-6">
+              <h2 className="text-label-sm font-bold tracking-[0.2em] text-on-surface-variant uppercase">
+                Following
+              </h2>
+              <span className="text-label-sm font-bold text-on-surface-variant">
+                {FOLLOWING_USERS.length}
+              </span>
+            </div>
+            {FOLLOWING_USERS.length === 0 ? (
+              <div className="py-20 text-center flex flex-col items-center gap-4 border-2 border-dashed border-surface-variant rounded-2xl">
+                <span className="material-symbols-outlined text-[48px] opacity-20 text-on-surface-variant">
+                  group
+                </span>
+                <p className="text-body-md text-on-surface-variant">Not following anyone yet.</p>
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                {FOLLOWING_USERS.map((member) => {
+                  const isFollowing = followingSet.has(member.id);
+                  return (
+                    <div
+                      key={member.id}
+                      className="flex items-center justify-between py-4 border-b border-surface-variant hover:bg-surface-container-low transition-colors -mx-3 px-3 rounded group"
+                    >
+                      <div className="flex items-center gap-4">
+                        <Link href={`/people/${member.name.replace(/ /g, "-").toLowerCase()}`}>
+                          <img
+                            alt={member.name}
+                            className="w-10 h-10 rounded-full object-cover border border-outline-variant/50 group-hover:border-primary/50 transition-colors shadow-sm"
+                            src={member.avatar}
+                          />
+                        </Link>
+                        <div>
+                          <Link href={`/people/${member.name.replace(/ /g, "-").toLowerCase()}`}>
+                            <h4 className="font-label-md text-base text-on-surface font-bold hover:text-primary cursor-pointer transition-colors">
+                              {member.name}
+                            </h4>
+                          </Link>
+                          <p className="font-label-sm text-on-surface-variant opacity-80">{member.reviews}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4 md:gap-6">
+                        <div className="hidden sm:flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[18px] text-primary">visibility</span>
+                          <span className="font-label-sm text-on-surface-variant">{member.views}</span>
+                        </div>
+                        <div className="hidden sm:flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[18px] text-on-surface-variant">grid_view</span>
+                          <span className="font-label-sm text-on-surface-variant">{member.lists}</span>
+                        </div>
+                        <div className="hidden sm:flex items-center gap-1.5">
+                          <span
+                            className="material-symbols-outlined text-[18px] text-error"
+                            style={{ fontVariationSettings: "'FILL' 1" }}
+                          >
+                            favorite
+                          </span>
+                          <span className="font-label-sm text-on-surface-variant">{member.likes}</span>
+                        </div>
+                        <button
+                          onClick={() => toggleFollow(member.id)}
+                          className={`rounded-full w-8 h-8 flex items-center justify-center ml-2 shadow-sm transition-all ${
+                            isFollowing
+                              ? "bg-primary text-on-primary-container"
+                              : "bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary-container"
+                          }`}
+                          title={isFollowing ? "Unfollow" : "Follow"}
+                        >
+                          <span className="material-symbols-outlined text-sm font-bold">
+                            {isFollowing ? "check" : "add"}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      }
 
       case "Likes":
         return (

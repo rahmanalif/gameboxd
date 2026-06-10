@@ -7,7 +7,7 @@ interface ProfileNavProps {
 
 export default function ProfileNav({ activeTab, onTabChange }: ProfileNavProps) {
   const tabs = [
-    "Profile", "Diary", "Activity", "Games", "Reviews", "Watchlist", "Lists", "Likes"
+    "Profile", "Diary", "Activity", "Games", "Reviews", "Watchlist", "Lists", "Following", "Likes"
   ];
 
   return (
