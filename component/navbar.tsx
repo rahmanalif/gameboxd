@@ -153,7 +153,7 @@ export default function Navbar() {
                   onClick={() => openAuthModal('signup')}
                   className="bg-[#00e676] text-[#00210b] font-label-md text-label-md uppercase tracking-widest px-5 py-2 rounded-lg flex items-center gap-1.5 hover:bg-primary transition-all shadow-md active:scale-95"
                 >
-                  + SIGN UP
+                  New Account
                 </button>
               </>
             ) : (
