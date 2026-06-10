@@ -129,7 +129,7 @@ export default function GameHero({ gameTitle = "Elden Ring" }: GameHeroProps) {
 
           {/* Primary Actions */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-2">
-            {/* <button
+            <button
               onClick={() => requireAuth(() => setIsLogModalOpen(true))}
               className="bg-primary-container hover:bg-primary text-on-primary-container h-14 rounded-lg flex flex-col items-center justify-center gap-1 transition-colors group"
             >
@@ -137,9 +137,9 @@ export default function GameHero({ gameTitle = "Elden Ring" }: GameHeroProps) {
                 edit_square
               </span>
               <span className="font-label-sm text-label-sm font-bold tracking-widest">
-                LOG
+                RATE
               </span>
-            </button> */}
+            </button>
 
             <button
               onClick={() => requireAuth(() => setIsLiked(!isLiked))}
