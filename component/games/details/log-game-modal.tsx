@@ -1,6 +1,127 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function CustomDatePicker({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const parsed = value ? new Date(value + "T00:00:00") : new Date();
+  const [viewYear, setViewYear] = useState(parsed.getFullYear());
+  const [viewMonth, setViewMonth] = useState(parsed.getMonth());
+  const selectedDate = value ? new Date(value + "T00:00:00") : null;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+  const cells: (number | null)[] = [];
+  for (let i = 0; i < firstDay; i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+
+  const prevMonth = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }
+    else setViewMonth(m => m - 1);
+  };
+  const nextMonth = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); }
+    else setViewMonth(m => m + 1);
+  };
+  const select = (day: number) => {
+    const d = new Date(viewYear, viewMonth, day);
+    onChange(d.toISOString().split("T")[0]);
+    setOpen(false);
+  };
+
+  const displayLabel = value
+    ? new Date(value + "T00:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+    : "Select date...";
+
+  return (
+    <div ref={ref} className="relative select-none">
+      {/* Trigger */}
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className="w-full bg-surface-container-high border border-surface-variant rounded-lg p-3 text-body-md text-left flex items-center justify-between transition-colors hover:border-primary focus:outline-none focus:border-primary"
+      >
+        <span className={value ? "text-on-surface" : "text-on-surface-variant/40"}>{displayLabel}</span>
+        <span className="material-symbols-outlined text-on-surface-variant text-[18px]">
+          {open ? "expand_less" : "calendar_month"}
+        </span>
+      </button>
+
+      {/* Dropdown */}
+      {open && (
+        <div className="absolute z-50 mt-1 w-full bg-surface-container border border-surface-variant rounded-xl p-4 shadow-2xl">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-3">
+            <button type="button" onClick={prevMonth} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-on-surface-variant hover:text-on-surface transition-colors">
+              <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+            </button>
+            <span className="font-body font-bold text-on-surface text-sm tracking-wide">
+              {MONTHS[viewMonth]} {viewYear}
+            </span>
+            <button type="button" onClick={nextMonth} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-on-surface-variant hover:text-on-surface transition-colors">
+              <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+            </button>
+          </div>
+
+          {/* Day headers */}
+          <div className="grid grid-cols-7 mb-1">
+            {DAYS.map(d => (
+              <div key={d} className="text-center font-bold text-[11px] tracking-widest text-on-surface-variant uppercase py-1">{d}</div>
+            ))}
+          </div>
+
+          {/* Days grid */}
+          <div className="grid grid-cols-7 gap-y-0.5">
+            {cells.map((day, i) => {
+              if (!day) return <div key={i} />;
+              const thisDate = new Date(viewYear, viewMonth, day);
+              thisDate.setHours(0, 0, 0, 0);
+              const isSelected = selectedDate && thisDate.getTime() === selectedDate.getTime();
+              const isToday = thisDate.getTime() === today.getTime();
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => select(day)}
+                  className={`mx-auto w-8 h-8 flex items-center justify-center rounded-lg text-sm font-body transition-colors
+                    ${isSelected
+                      ? "bg-primary text-on-primary-fixed font-bold"
+                      : isToday
+                      ? "border border-primary text-primary hover:bg-primary/20"
+                      : "text-on-surface hover:bg-surface-variant"
+                    }`}
+                >
+                  {day}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Footer */}
+          <div className="flex justify-between mt-3 pt-3 border-t border-surface-variant">
+            <button type="button" onClick={() => { onChange(""); setOpen(false); }} className="text-[11px] font-bold tracking-widest uppercase text-on-surface-variant hover:text-error transition-colors">Clear</button>
+            <button type="button" onClick={() => { const t = new Date(); setViewYear(t.getFullYear()); setViewMonth(t.getMonth()); onChange(t.toISOString().split("T")[0]); setOpen(false); }} className="text-[11px] font-bold tracking-widest uppercase text-primary hover:text-primary-container transition-colors">Today</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 interface LogGameModalProps {
   isOpen: boolean;
@@ -138,12 +259,7 @@ export default function LogGameModal({
             <label className="text-label-md font-bold tracking-widest uppercase text-on-surface-variant">
               Date Played
             </label>
-            <input
-              type="date"
-              value={datePlayed}
-              onChange={(e) => setDatePlayed(e.target.value)}
-              className="bg-surface-container-high border border-surface-variant rounded-lg p-3 text-body-md focus:outline-none focus:border-primary transition-colors text-on-surface [color-scheme:dark] cursor-pointer"
-            />
+            <CustomDatePicker value={datePlayed} onChange={setDatePlayed} />
           </div>
 
           {/* Platform */}
@@ -203,7 +319,7 @@ export default function LogGameModal({
             </button>
             <button
               type="submit"
-              className="bg-primary text-[#00210b] px-8 py-3 rounded-lg font-bold tracking-[0.15em] hover:bg-primary-container transition-all shadow-lg active:scale-95 uppercase text-label-md flex items-center gap-2"
+              className="bg-primary text-on-primary-fixed px-8 py-3 rounded-lg font-bold tracking-[0.15em] hover:bg-primary-container transition-all shadow-lg active:scale-95 uppercase text-label-md flex items-center gap-2"
             >
               <span
                 className="material-symbols-outlined text-[18px]"
