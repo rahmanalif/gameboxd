@@ -47,12 +47,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onSuccess={() => setIsLoggedIn(true)}
-        initialMode={authMode}
-      />
+      {isAuthModalOpen && (
+        <AuthModal
+          key={authMode}
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+          onSuccess={() => setIsLoggedIn(true)}
+          initialMode={authMode}
+        />
+      )}
     </AuthContext.Provider>
   );
 }

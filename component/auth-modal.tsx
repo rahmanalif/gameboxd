@@ -11,11 +11,8 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "login" }: AuthModalProps) {
   const [mode, setMode] = useState<"login" | "signup">(initialMode);
-
-  // Reset mode when modal opens
-  useEffect(() => {
-    if (isOpen) setMode(initialMode);
-  }, [isOpen, initialMode]);
+  const authInputClass =
+    "appearance-none bg-surface-container-high bg-clip-padding border-0 ring-1 ring-inset ring-surface-variant rounded-lg p-3 text-body-md focus:outline-none focus:ring-primary transition-colors text-on-surface-variant [-webkit-text-fill-color:var(--color-on-surface-variant)] autofill:bg-clip-padding autofill:shadow-[0_0_0_1000px_var(--color-surface-container-high)_inset] autofill:[-webkit-text-fill-color:var(--color-on-surface-variant)]";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +71,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "l
                 <label className="text-label-md font-bold tracking-widest uppercase text-on-surface-variant">Username</label>
                 <input 
                   type="text" 
-                  className="bg-surface-container-high border border-surface-variant rounded-lg p-3 text-body-md focus:outline-none focus:border-primary transition-colors text-on-surface-variant [-webkit-text-fill-color:var(--color-on-surface-variant)] autofill:shadow-[0_0_0_1000px_#1b2c39_inset] autofill:[-webkit-text-fill-color:var(--color-on-surface-variant)]"
+                  className={authInputClass}
                   placeholder="Choose a username"
                 />
               </div>
@@ -84,7 +81,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "l
               <label className="text-label-md font-bold tracking-widest uppercase text-on-surface-variant">Email Address</label>
               <input 
                 type="email" 
-                className="bg-surface-container-high border border-surface-variant rounded-lg p-3 text-body-md focus:outline-none focus:border-primary transition-colors text-on-surface-variant [-webkit-text-fill-color:var(--color-on-surface-variant)] autofill:shadow-[0_0_0_1000px_#1b2c39_inset] autofill:[-webkit-text-fill-color:var(--color-on-surface-variant)]"
+                className={authInputClass}
                 placeholder="name@example.com"
               />
             </div>
@@ -98,7 +95,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = "l
               </div>
               <input 
                 type="password" 
-                className="bg-surface-container-high border border-surface-variant rounded-lg p-3 text-body-md focus:outline-none focus:border-primary transition-colors text-on-surface-variant [-webkit-text-fill-color:var(--color-on-surface-variant)] autofill:shadow-[0_0_0_1000px_#1b2c39_inset] autofill:[-webkit-text-fill-color:var(--color-on-surface-variant)]"
+                className={authInputClass}
                 placeholder="••••••••"
               />
             </div>
